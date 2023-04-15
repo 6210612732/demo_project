@@ -5,10 +5,10 @@ $offset: 150%;
 $inputHeight: 63px;
 $transitionEasing: cubic-bezier(.36,1,.62,.98);
 
-$background1: #433B7C;
-$background2: #2C497F;
+$background1: #BE3455;
+$background2: #BE3455;
 
-$yellow: #ED6A5E;
+yellow: #FF6542;
 
 @mixin box-shadow($props...) {
     -webkit-box-shadow: $props;
@@ -38,6 +38,7 @@ body {
     font-size: 16px;
     color: #fff;
     margin: 0 !important;
+    
 }
 
 .app {
@@ -45,11 +46,8 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 100%;
-    overflow-y: scroll;
-    background-image: url('https://unsplash.it/1366/768?image=568');
-    background-repeat: no-repeat;
-    background-size: cover;
+    width: 100%;
+    background-color: #6868ab;
 }
 
 .form-block-wrapper {
@@ -58,6 +56,7 @@ body {
     left: 0;
     right: 0;
     height: 100%;
+    width: 100%;
     @include transition(all .85s ease-in-out);
     &--is-login {
         opacity: .92;
@@ -71,10 +70,21 @@ body {
 
 .form-block {
     position: relative;
-    margin: 100px auto 0;
-    width: 285px;
+    margin: 3rem auto 0;
+    width: 50%;
     padding: 25px;
     background: rgba(255, 255, 255, .13);
+    border-radius: 2 * $borderRadius;
+    color: #fff;
+    @include box-shadow(0px 0px 16px 9px rgba(0,0,0,0.07));
+}
+
+.form-block-2 {
+    position: relative;
+    margin: 1rem auto 0;
+    width: 40%;
+    padding: 10px;
+    background: rgba(174, 186, 211, 0.889);
     border-radius: 2 * $borderRadius;
     color: #fff;
     @include box-shadow(0px 0px 16px 9px rgba(0,0,0,0.07));

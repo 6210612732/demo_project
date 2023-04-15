@@ -1,24 +1,39 @@
-import logo from './logo.svg';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.css';
+
+import { BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
+
+import Cards from './components/Card.component';
+import Signup from './components/pages/Signup_patient';
+import Signup_doctor from './components/pages/Signup_doctor';
+import Abc from './Abc';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+
+        <Container>        
+          <Row>
+            <Col >
+              <div className="wrapper">
+                <Routes>
+                  <Route exact path="/" element={<Abc/>} />
+                  <Route path="/demo" element={<Cards/>} />
+                  <Route path="/abc" element={<Abc/>} />
+                  <Route path="/patient/signup" element={<Signup/>} />
+                  <Route path="/doctor/signup_doctor" element={<Signup_doctor/>} />
+                </Routes>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+
+      </div>
+    </Router>
   );
 }
 
