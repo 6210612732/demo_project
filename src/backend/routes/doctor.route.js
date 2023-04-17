@@ -1,13 +1,22 @@
 let mongoose = require('mongoose'),
     express = require('express'),
     router = express.Router();
+const bcrypt = require('bcrypt');
 
 // patient model
 let doctorSchema = require('../models/Doctor')
 
 // create doctor
 router.route('/create-doctor').post((req, res, next) => {
-    doctorSchema.create(req.body, (error, data) => {
+    const { username , plainpass } = req.body;
+    const temp = req.body;
+    const saltRounds = 10;
+
+    bcrypt.hash(plainpass, saltRounds, function (err, hash) {
+    // Store hash in password DB.
+    //console.log(username + " - " + plainpass + " - " +  hash);
+    temp.password = hash;
+    doctorSchema.create(temp, (error, data) => {
         if(error) { 
             return  next(error);
         } else {
@@ -15,6 +24,8 @@ router.route('/create-doctor').post((req, res, next) => {
             res.json(data);
         }
     })
+    });
+    
 })
 
 // Read patient 

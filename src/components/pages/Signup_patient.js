@@ -24,7 +24,7 @@ export default class Signup extends Component {
         this.state = {
             username: '',
             email: '',
-            password: '',
+            plainpass: '',
             blood: '',
             tel: '',
             address: '',
@@ -123,24 +123,6 @@ export default class Signup extends Component {
              () => { window.location.replace('/'); }
           )
         //console.log('student success create ');
-
-        this.setState({
-            username: '',
-            email: '',
-            password: '',
-            blood: '',
-            tel: '',
-            address: '',
-            name_sur: '',
-            drug: '',
-            age: '',
-            kg_cm: '',
-            allergic: '',
-            gender: '',
-            chronic_disease: '',
-            being_treated: '',
-            des: ''
-        })
     }
 
   render() {
@@ -162,7 +144,7 @@ export default class Signup extends Component {
                 <MDBInput wrapperClass='mb-4' placeholder='Email address' onChange={this.onChangeEmail} id='form1' type='email'/>
                 <MDBInput wrapperClass='mb-4' placeholder='Password' onChange={this.onChangePassword} id='form2' type='password'/>
                 <div className="text-center pt-1 mb-5 pb-1">
-                  <MDBBtn type='submit' className={`mb-0 w-100 ${styles.gradient_custom_2}`}>Sign up</MDBBtn>
+                  <MDBBtn type='submit' className={`mb-0 w-50 ${styles.gradient_custom_2}`}>Sign up</MDBBtn>
                   
                 </div>
                 </Form>    

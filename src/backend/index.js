@@ -8,6 +8,7 @@ let express = require('express'),
 const patientRoute = require('../backend/routes/patient.route');
 const monitorRoute = require('../backend/routes/monitor.route');
 const doctorRoute = require('../backend/routes/doctor.route');
+const appRoute = require('../backend/routes/app.route');
 
 // connecting mongodb database
 mongoose.Promise = global.Promise;
@@ -30,6 +31,8 @@ app.use(cors());
 app.use('/api/patient', patientRoute);
 app.use('/api/doctor', doctorRoute);
 app.use('/api/monitor', monitorRoute);
+app.use('/api/app', appRoute);
+
 // port
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {

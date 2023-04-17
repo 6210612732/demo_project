@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import ChartPulse from './ChartPulse.component';
 import ChartPressure from './ChartPressure.component';
 import ChartOxi from './ChartOxi.component';
-import Mqx from '../backend/mqtt/mqtt_connect';
+//import Mqx from '../backend/mqtt/mqtt_connect';
 
 
 export default class Cards extends Component {

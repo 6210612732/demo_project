@@ -2,7 +2,7 @@ import time
 import paho.mqtt.client as paho
 from paho import mqtt
 from datetime import datetime
-
+import json
 
 # setting callbacks for different events to see if it works, print the message etc.
 def on_connect(client, userdata, flags, rc, properties=None):
@@ -41,20 +41,17 @@ client.on_publish = on_publish
 uid = "id_" + "A1234" # sudo id
 
 # subscribe to all topics of encyclopedia by using the wildcard "#"
-client.subscribe("mnt/" + uid , qos=1)
+client.subscribe("panIot/" + uid , qos=1)
 
 # a single publish, this can also be done in loops, etc.
 client.publish("mnt/" + uid, payload='ready', qos=1)
 
 
 def push_data(date_time,pulse,pressupper,presslower,oxi):
-    client.publish("mnt/id_A1234", payload='{"date": "' + str(date_time[0]) + '",' +
-                                            '"time": "' + str(date_time[1]) + '"' +
-                                            '"pulse": "' + str(pulse) + '"' +
-                                            '"pressupper": "' + str(pressupper) + '"' +
-                                            '"presslower": "' + str(presslower) + '"' +
-                                            '"oxi": "' + str(oxi) + '"' +
-                                            '}', qos=1)
+    x = {"device_token":"randommmmmm","timeStamp":str(date_time[1]),"BloodPress": [{"SYS": str(pressupper),"DIA": str(presslower),"PUL": str(pulse),}],"Oximeter": [{"SAT": str(oxi),"PUL": str(pulse),}],}
+    y = json.dumps(x)
+    
+    client.publish("panIot/", payload=y, qos=1)
 
 # loop_forever for simplicity, here you need to stop the loop manually
 # you can also use loop_start and loop_stop
@@ -66,7 +63,7 @@ pressupper = [107,108,109,110]
 presslower = [75,75,76,76]
 oxi = [95,96,97,98]
 list_date =  [["2023-04-04","20:25"],["2023-04-04","20:27"],["2023-04-04","20:29"],["2023-04-04","20:31"]]
-for i in range(20):
+for i in range(3):
     client.loop_start()
     client.loop_stop()
     dt = datetime.now()

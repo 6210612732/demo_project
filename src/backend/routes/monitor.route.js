@@ -6,13 +6,14 @@ let mongoose = require('mongoose'),
 let monitorSchema = require('../models/Monitor')
 
 // create student
-router.route('/create-monitor').post((req, res, next) => {
+router.route('/sniff-monitor').post((req, res, next) => {
+    console.log(req.body);
     monitorSchema.create(req.body, (error, data) => {
         if(error) { 
             return  next(error);
         } else {
             console.log(data);
-            res.json(data);
+            //res.json(data);
         }
     })
 })
